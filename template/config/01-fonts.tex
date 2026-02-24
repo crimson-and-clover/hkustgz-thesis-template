@@ -52,22 +52,36 @@
       \setsansfont{Arial}
       \setmonofont{Courier New}[Scale=0.9]
     }{
-      \IfFontExistsTF{TeX Gyre Termes}{
-        % TeX Live 自带开源替代（Times 风格）
-        \setmainfont{TeX Gyre Termes}
-        \setsansfont{TeX Gyre Heros}    % Helvetica 风格
-        \setmonofont{TeX Gyre Cursor}[Scale=0.9]  % Courier 风格
+      \IfFontExistsTF{texgyretermes-regular.otf}{
+        % 使用文件名加载，绕过系统 fontconfig，直接从 TeX Live 路径抓取
+        \setmainfont{texgyretermes-regular.otf}[
+          BoldFont       = texgyretermes-bold.otf,
+          ItalicFont     = texgyretermes-italic.otf,
+          BoldItalicFont = texgyretermes-bolditalic.otf
+        ]
+        \setsansfont{texgyreheros-regular.otf}[
+          BoldFont       = texgyreheros-bold.otf,
+          ItalicFont     = texgyreheros-italic.otf,
+          BoldItalicFont = texgyreheros-bolditalic.otf
+        ]
+        \setmonofont{texgyrecursor-regular.otf}[
+          BoldFont       = texgyrecursor-bold.otf,
+          ItalicFont     = texgyrecursor-italic.otf,
+          BoldItalicFont = texgyrecursor-bolditalic.otf,
+          Scale          = 0.9
+        ]
       }{
-        % 最后尝试 Liberation 字体（大多数 Linux 发行版都有）
-        \setmainfont{Liberation Serif}
-        \setsansfont{Liberation Sans}
-        \setmonofont{Liberation Mono}[Scale=0.9]
+        % 最后的保底（通常不会走到这一步，因为 TeX Live 必带 Termes）
+        \setmainfont{DejaVu Serif}
+        \setsansfont{DejaVu Sans}
+        \setmonofont{DejaVu Sans Mono}[Scale=0.9]
       }
     }
   }
   
   % 中文支持
   \RequirePackage{xeCJK}
+  \xeCJKsetup{AutoFakeBold=false}
   
   % 中文字体设置（使用开源字体，可根据系统调整）
   % 优先级：Source Han > Noto CJK > SimSun > PingFang > AR PL UMing

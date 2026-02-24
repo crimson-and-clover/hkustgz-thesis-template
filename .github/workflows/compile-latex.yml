@@ -2,7 +2,7 @@ name: Compile LaTeX
 
 on:
     push:
-        branches: [master]
+        branches: [master, dev-*]
         tags:
             - "v*"
     workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
                   latexmk_use_xelatex: true
                   os: debian
                   args: "-file-line-error -halt-on-error -interaction=nonstopmode"
-                  extra_system_packages: "fonts-noto-cjk fonts-arphic-uming fonts-noto-cjk-extra"
+                  extra_system_packages: "fonts-noto-cjk fonts-arphic-uming fonts-noto-cjk-extra fonts-texgyre"
 
             - name: Upload PDF
               uses: actions/upload-artifact@v6
