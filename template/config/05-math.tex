@@ -1,0 +1,95 @@
+% ============================================================
+% HKUST(GZ) Thesis - Math Configuration
+% 数学环境配置：公式、定理等
+% ============================================================
+
+% 基础数学包
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amsthm}
+
+% 数学符号增强
+\RequirePackage{mathtools}     % amsmath 的扩展
+\RequirePackage{bm}            % 粗体数学符号
+
+% 定理环境定义
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{assumption}{Assumption}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[chapter]
+
+% 证明环境
+\renewcommand{\proofname}{Proof}
+
+% 算法环境（伪代码）
+\IfFileExists{algorithm2e.sty}{
+  \RequirePackage[ruled,linesnumbered]{algorithm2e}
+  \SetAlgoCaptionLayout{centering}
+}{}
+
+% 常用数学命令
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+% 数集符号
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% 向量/矩阵符号（粗体）
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\boldsymbol{#1}}
+
+% 常用引用命令
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\eqnref}[1]{Equation~\eqref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+\newcommand{\algoref}[1]{Algorithm~\ref{#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{#1}}
+\newcommand{\defref}[1]{Definition~\ref{#1}}
+
+% 优化符号
+\newcommand{\st}{\text{s.t.}}  % subject to
+\newcommand{\subjectto}{\mathrel{\text{s.t.}}}
+
+% 微分符号
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% 范数和内积
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+% 集合表示
+\newcommand{\set}[1]{\left\{#1\right\}}
+
+% 引用缩写
+\newcommand{\etal}{\textit{et~al.}\xspace}
+\newcommand{\eg}{\textit{e.g.},\xspace}
+\newcommand{\ie}{\textit{i.e.},\xspace}
+\newcommand{\wrt}{\textit{w.r.t.}\xspace}
+\newcommand{\aka}{\textit{a.k.a.}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\cf}{\textit{cf.}\xspace}

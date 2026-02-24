@@ -1,0 +1,45 @@
+name: Compile LaTeX
+
+on:
+    push:
+        branches: [master]
+        tags:
+            - "v*"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-24.04
+        steps:
+            - uses: actions/checkout@v6
+
+            - name: Compile LaTeX
+              uses: xu-cheng/latex-action@v4
+              with:
+                  root_file: main.tex
+                  latexmk_use_xelatex: true
+                  os: debian
+                  args: "-file-line-error -halt-on-error -interaction=nonstopmode"
+                  extra_system_packages: "fonts-noto-cjk fonts-arphic-uming fonts-noto-cjk-extra"
+
+            - name: Upload PDF
+              uses: actions/upload-artifact@v6
+              with:
+                  name: thesis-pdf
+                  path: main.pdf
+
+            - name: Create Release
+              if: github.ref_type == 'tag'
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: main.pdf
+                  generate_release_notes: true
+                  draft: false
+                  prerelease: false
+                  tag_name: ${{ github.ref_name }}
+                  fail_on_unmatched_files: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

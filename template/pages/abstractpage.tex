@@ -1,0 +1,73 @@
+% ============================================================
+% HKUST(GZ) Thesis - Abstract Page
+% 摘要页定义
+% ============================================================
+
+% 英文摘要环境
+\renewenvironment{abstract}{%
+  \clearpage
+  \pagestyle{plain}
+  \addcontentsline{toc}{chapter}{Abstract}
+  \vspace*{1cm}
+  \begin{center}
+    {\Large\bfseries\@title\par}
+    \vspace{1.0cm}
+    {\large by \@author\par}
+    \vspace{1.0cm}
+    {\@department\par}
+    \vspace{0.5cm}
+    {The Hong Kong University of Science and Technology (Guangzhou)\par}
+    \vspace{1cm}
+    {\large\bfseries Abstract\par}
+  \end{center}
+  
+  \vspace{0.5cm}
+}{%
+  \clearpage
+}
+
+% 中文摘要环境（可选）
+\newenvironment{abstractcn}{%
+  \clearpage
+  \pagestyle{plain}
+  \addcontentsline{toc}{chapter}{摘要}
+  \vspace*{1cm}
+  \begin{center}
+    {\Large\bfseries 论文题目（中文）\par}
+    \vspace{1.0cm}
+    {\large 作者：\@author\par}
+    \vspace{1.0cm}
+    {\@department\par}
+    \vspace{0.5cm}
+    {香港科技大学（广州）\par}
+    \vspace{1cm}
+    {\large\bfseries 摘\quad 要\par}
+  \end{center}
+  
+  \vspace{0.5cm}
+}{%
+  \clearpage
+}
+
+% 致谢环境
+\newenvironment{acknowledgments}{%
+  \clearpage
+  \addcontentsline{toc}{chapter}{Acknowledgments}
+  \begin{center}
+    {\Large\bfseries Acknowledgments\par}
+    \vspace{0.6cm}
+  \end{center}
+}{%
+  \clearpage
+}
+
+% 献词环境（可选）
+\newenvironment{dedication}{%
+  \chapter*{Dedication}
+  \thispagestyle{empty}
+  \vspace*{5cm}
+  \begin{center}
+}{%
+  \end{center}
+  \clearpage
+}

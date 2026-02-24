@@ -1,0 +1,86 @@
+% ============================================================
+% HKUST(GZ) Thesis - Heading Styles Configuration
+% 章节标题样式配置：使用 titlesec 包
+% ============================================================
+
+\RequirePackage{titlesec}
+
+% Chapter 样式：居中，大写，粗体
+\titleformat{\chapter}[display]
+  {\centering\large}
+  {\MakeUppercase{\chaptertitlename}~\thechapter} % 第一行：CHAPTER 1
+  {\baselineskip}                % 2. 设置垂直距离为“一排文字的高度”，即空出一行
+  {\MakeUppercase}
+
+\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+
+% Section 样式
+\titleformat{\section}
+  {\normalsize}
+  {\thesection}
+  {1em}
+  {}
+
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Subsection 样式
+\titleformat{\subsection}
+  {\normalsize}
+  {\thesubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsection}{2em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Subsubsection 样式
+\titleformat{\subsubsection}
+  {\normalsize}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+\titlespacing*{\subsubsection}{3em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% 目录样式配置
+\RequirePackage{titletoc}
+
+% Chapter 在目录中的样式
+\titlecontents{chapter}[0pt]
+  {}
+  {\makebox[1.5em][l]{\thecontentslabel}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+% Section 在目录中的样式
+\titlecontents{section}[1.5em]
+  {}
+  {\thecontentslabel\hspace{0.5em}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+% Subsection 在目录中的样式
+\titlecontents{subsection}[3.8em]
+  {}
+  {\thecontentslabel\hspace{0.5em}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+% ============================================================
+% 附录格式自动处理
+% ============================================================
+
+% 保存原始的 \appendix 命令
+\let\hkustgz@oldappendix\appendix
+
+% 重定义 \appendix，自动应用附录格式
+\renewcommand{\appendix}{%
+  \hkustgz@oldappendix
+  % 1. 修改正文标题：将 "CHAPTER" 改为 "APPENDIX"
+  \titleformat{\chapter}[display]
+    {\centering\normalfont\large}
+    {APPENDIX~\thechapter}
+    {\baselineskip}
+    {\MakeUppercase}%
+  % 2. 修改目录前缀：将 "Chapter" 改为 "Appendix"
+  \addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{Appendix\ }}%
+}

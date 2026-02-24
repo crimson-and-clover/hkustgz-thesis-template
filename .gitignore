@@ -1,0 +1,92 @@
+# ============================================================
+# LaTeX Compilation Artifacts
+# ============================================================
+
+# PDF output (uncomment if you want to ignore PDFs)
+# *.pdf
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Lists of figures/tables
+*.lof
+*.lot
+
+# Index files
+*.idx
+*.ind
+*.ilg
+
+# Glossary files
+*.glo
+*.gls
+*.glg
+
+# Bibliography files (keep .bib, ignore generated)
+*.bcf
+*.run.xml
+
+# Beamer
+*.snm
+*.nav
+*.vrb
+
+# Minted code highlighting
+_minted-*
+*.pyg
+
+# Tikz externalization
+*.md5
+*.dpth
+*.dep
+
+# ============================================================
+# Editor and OS Files
+# ============================================================
+
+# VS Code
+/.vscode/
+/*.code-workspace
+
+# JetBrains IDEs
+/.idea/
+
+# macOS
+/**/.DS_Store
+/**/.AppleDouble
+/**/.LSOverride
+
+# Windows
+/**/Thumbs.db
+/**/ehthumbs.db
+/**/Desktop.ini
+
+# Linux
+/**/*~
+/**/.nfs*
+
+# ============================================================
+# Temporary Files
+# ============================================================
+
+/**/*.tmp
+/**/*.temp
+/**/*.bak
+/**/*.swp
+/**/*.swo
+/**/*~
+
+# ============================================================
+# GitHub Actions (keep workflow files, ignore local test artifacts)
+# ============================================================
+
+# Local act testing
+/**/.actrc

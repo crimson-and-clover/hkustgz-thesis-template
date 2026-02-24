@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this template for your thesis, please cite it as below."
+type: software
+title: "HKUST(GZ) Thesis Template"
+abstract: "A modern LaTeX template for Master's and PhD theses at the Hong Kong University of Science and Technology (Guangzhou)."
+authors:
+  - name: "3DAgentWorld"
+repository-code: "https://github.com/crimson-and-clover/hkustgz-thesis-template"
+license: MIT
+version: 1.0.0
+date-released: 2026-02-18
+keywords:
+  - LaTeX
+  - thesis
+  - HKUST
+  - HKUST(GZ)
+  - Hong Kong University of Science and Technology
+  - dissertation
+  - MPhil
+  - PhD
+  - Master
+  - academic writing

@@ -1,0 +1,43 @@
+% ============================================================
+% HKUST(GZ) Thesis - Hyperlinks Configuration
+% 超链接配置：目录、引用等可点击
+% ============================================================
+
+% hyperref 应该最后加载（大部分包之后）
+\RequirePackage[
+  pdfencoding=auto,       % 自动处理编码
+  bookmarks=true,         % 生成 PDF 书签
+  bookmarksopen=false,    % 书签默认折叠
+  bookmarksnumbered=true, % 书签带编号
+  colorlinks=true,        % 彩色链接（打印时改为 false）
+  linkcolor=black,     % 内部链接颜色
+  citecolor=linkblue,     % 引用链接颜色
+  urlcolor=urlred,        % URL 颜色
+  filecolor=linkblue,     % 文件链接颜色
+  pdfstartview=FitH,      % 默认适应宽度
+  pdfpagelayout=OneColumn,% 单栏布局
+]{hyperref}
+
+% PDF 元数据设置
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={Thesis},
+  }
+}
+
+% 智能交叉引用（可选）
+\IfFileExists{cleveref.sty}{
+  \RequirePackage{cleveref}
+  \crefname{figure}{Figure}{Figures}
+  \crefname{table}{Table}{Tables}
+  \crefname{equation}{Equation}{Equations}
+  \crefname{chapter}{Chapter}{Chapters}
+  \crefname{section}{Section}{Sections}
+  \crefname{algorithm}{Algorithm}{Algorithms}
+}{}
+
+% URL 处理
+\RequirePackage{url}
+\urlstyle{same}  % URL 使用与正文相同的字体

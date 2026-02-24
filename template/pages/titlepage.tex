@@ -1,0 +1,93 @@
+% ============================================================
+% HKUST(GZ) Thesis - Title Page
+% 封面页定义
+% ============================================================
+
+% 存储论文信息的变量
+\def\@title{}
+\def\@author{}
+\def\@degree{}
+\def\@degreeabbr{}
+\def\@department{}
+\def\@subject{}
+\def\@advisor{}
+\def\@depthead{}
+\def\@deptheadthrust{}
+\def\@titlepagedate{\today}      % 标题页用：月年格式
+\def\@authdate{\today}           % 授权页/签名页用：日月年格式
+\def\@defencedate{\today}
+\def\@stage{Thesis}
+\def\@cosupervisor{}
+
+% 用户命令：设置论文信息
+% 设置学位：\degree[简称]{全称}
+% 例如：\degree[\MPhilabbr]{\MPhil} 或 \degree[MPhil]{Master of Philosophy}
+\newcommand{\degree}[2][]{%
+  \gdef\@degree{#2}%
+  \def\@tempa{#1}%
+  \ifx\@tempa\@empty
+    \gdef\@degreeabbr{#2}%
+  \else
+    \gdef\@degreeabbr{#1}%
+  \fi
+}
+\newcommand{\department}[1]{\gdef\@department{#1}}
+\newcommand{\subject}[1]{\gdef\@subject{#1}}
+\newcommand{\advisor}[1]{\gdef\@advisor{#1}}
+\newcommand{\cosupervisor}[1]{\gdef\@cosupervisor{#1}}
+\newcommand{\depthead}[2]{\gdef\@depthead{#1}\gdef\@deptheadthrust{#2}}
+\newcommand{\titlepagedate}[1]{\gdef\@titlepagedate{#1}}  % 标题页用：月年格式
+\newcommand{\authdate}[1]{\gdef\@authdate{#1}}            % 授权页/签名页用：日月年格式
+\newcommand{\defencedate}[1]{\gdef\@defencedate{#1}}
+\newcommand{\stage}[1]{\gdef\@stage{#1}}
+
+% 预定义学位名称（全称）
+\newcommand{\MPhil}{Master of Philosophy}
+\newcommand{\PhD}{Doctor of Philosophy}
+\newcommand{\MSc}{Master of Science}
+
+% 预定义学位名称（简称）
+\newcommand{\MPhilabbr}{MPhil}
+\newcommand{\PhDabbr}{PhD}
+\newcommand{\MScabbr}{MSc}
+
+% 生成封面页
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \thispagestyle{plain}
+    \centering
+    \vspace*{1cm}
+    
+    % 标题
+    {\LARGE\bfseries\@title\par}
+    
+    \vspace{3cm}
+    
+    % 作者
+    {\large by\par}
+    \vspace{0.3cm}
+    {\large \@author\par}
+    
+    \vspace{3cm}
+    
+    % 提交说明
+    {\large A \@stage\ Submitted to\par}
+    {\large The Hong Kong University of Science and Technology (Guangzhou)\par}
+    {\large in Partial Fulfillment of the Requirements for\par}
+    {\large the Degree of \@degree\par}
+    {\large in \@subject\par}
+    
+    \vspace{2cm}
+    
+    % 日期和地点
+    {\large\@titlepagedate, Guangzhou\par}
+    
+    \vfill
+    
+    % 版权声明
+    % {\small Copyright \copyright\ \@author\ \the\year\par}
+    
+  \end{titlepage}
+  
+  \addcontentsline{toc}{chapter}{Title Page}
+}

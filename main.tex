@@ -1,0 +1,126 @@
+% ============================================================
+% HKUST(GZ) Thesis - Main File
+% 香港科技大学（广州）学位论文主文件
+%
+% 编译方式：
+%   xelatex main.tex
+%   biber main
+%   xelatex main.tex
+%   xelatex main.tex
+% ============================================================
+
+\documentclass[a4paper]{template/hkustgz-thesis}
+
+% ============================================================
+% 论文基本信息
+% ============================================================
+\title{Your Thesis Title Here}
+\author{Your Name}
+% 学位设置：\degree[简称]{全称}
+% 使用预定义宏：\degree[\MPhilabbr]{\MPhil}  或 \degree[\PhDabbr]{\PhD}  或 \degree[\MScabbr]{\MSc}
+% 直接写字符串：\degree[MPhil]{Master of Philosophy}
+% 只写全称（简称=全称）：\degree{Master of Philosophy}
+\degree[\MPhilabbr]{\MPhil}
+\department{Your Department / Information Hub}  % 学院/学域
+\subject{Your Subject}  % 专业
+\advisor{Prof. Your Advisor}  % 导师
+\cosupervisor{Prof. Your Co-supervisor}  % 合作导师（可选）
+\depthead{Prof. Department Head}{Your Thrust}  % 格式：\depthead{姓名}{Thrust名称}
+\titlepagedate{Month Year}        % 标题页：月年格式
+\authdate{DD Month YYYY}          % 授权页/签名页：日月年格式
+
+% ============================================================
+% 参考文献数据库
+% ============================================================
+\addbibresource{references.bib}
+
+% ============================================================
+% 文档开始
+% ============================================================
+\begin{document}
+
+% -----------------------------------------------------------
+% 封面页 (i, 不显示页码)
+% -----------------------------------------------------------
+\maketitle
+
+% -----------------------------------------------------------
+% 摘要 (ii)
+% -----------------------------------------------------------
+\begin{abstract}
+\input{chapters/02_abstract}
+\end{abstract}
+
+% 中文摘要（可选）
+% \begin{abstractcn}
+% 这里写中文摘要...
+% \end{abstractcn}
+
+% -----------------------------------------------------------
+% 授权页 (iii)
+% -----------------------------------------------------------
+\makeauthorization
+
+% -----------------------------------------------------------
+% 签名页 (iv)
+% -----------------------------------------------------------
+\makesignature
+
+% -----------------------------------------------------------
+% 致谢 (v)
+% -----------------------------------------------------------
+\begin{acknowledgments}
+\input{chapters/01_acknowledgments}
+\end{acknowledgments}
+
+% -----------------------------------------------------------
+% 目录 (vi)
+% -----------------------------------------------------------
+\tableofcontents
+
+\clearpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\clearpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+% -----------------------------------------------------------
+% 正文开始（页码改为阿拉伯数字）
+% -----------------------------------------------------------
+\mainmatter
+
+\chapter{Introduction}
+\label{chap:intro}
+\input{chapters/03_introduction}
+
+\chapter{Literature Review}
+\label{chap:review}
+\input{chapters/04_literature_review}
+
+\chapter{Methods}
+\label{chap:methods}
+\input{chapters/05_methods}
+
+\chapter{Experiments}
+\label{chap:experiments}
+\input{chapters/06_experiments}
+
+\chapter{Conclusion}
+\label{chap:conclusion}
+\input{chapters/07_conclusion}
+
+% -----------------------------------------------------------
+% 参考文献
+% -----------------------------------------------------------
+\printthebibliography
+
+% -----------------------------------------------------------
+% 附录（可选）
+% -----------------------------------------------------------
+\appendix
+\chapter{Supplementary Material}
+\input{chapters/08_supplementary}
+
+\end{document}

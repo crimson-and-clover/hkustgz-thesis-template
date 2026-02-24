@@ -1,0 +1,86 @@
+% ============================================================
+% HKUST(GZ) Thesis - Floats Configuration
+% 图表环境配置：图片、表格、算法等
+% ============================================================
+
+% 图片支持
+\RequirePackage{graphicx}
+% 图片搜索路径（相对于主文件）
+\graphicspath{{figures/}{images/}{./}}
+
+% 子图支持
+\RequirePackage{subcaption}
+\captionsetup[subfigure]{labelformat=simple}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
+
+% 表格增强
+\RequirePackage{booktabs}      % 专业表格线
+\RequirePackage{array}         % 增强列格式
+\RequirePackage{multirow}      % 多行合并
+\RequirePackage{longtable}     % 跨页表格
+\RequirePackage{tabularx}      % 自动调整列宽
+\RequirePackage{threeparttable} % 表格注释
+
+% 浮动体位置优化
+\RequirePackage{float}
+
+% 浮动体参数设置
+\setcounter{topnumber}{2}      % 页面顶部最多 2 个浮动体
+\setcounter{bottomnumber}{1}   % 页面底部最多 1 个浮动体
+\setcounter{totalnumber}{3}    % 页面总共最多 3 个浮动体
+\setcounter{dbltopnumber}{2}   % 双栏页面顶部最多 2 个
+
+\renewcommand{\topfraction}{0.7}
+\renewcommand{\bottomfraction}{0.3}
+\renewcommand{\textfraction}{0.2}
+\renewcommand{\floatpagefraction}{0.5}
+\renewcommand{\dbltopfraction}{0.7}
+\renewcommand{\dblfloatpagefraction}{0.5}
+
+% 图表标题样式
+\RequirePackage{caption}
+\captionsetup{
+  font=small,           % 小号字体
+  labelfont=bf,         % 标签加粗
+  labelsep=colon,       % 标签与标题之间用冒号
+  justification=centering, % 居中对齐
+}
+
+% 图片标题样式
+\captionsetup[figure]{
+  name=Figure,
+  listformat=simple,
+  aboveskip=10pt,
+  belowskip=10pt
+}
+
+% 表格标题样式
+\captionsetup[table]{
+  name=Table,
+  listformat=simple,
+  position=above,        % 表格标题在上方
+  aboveskip=10pt,
+  belowskip=10pt
+}
+
+% 算法支持（可选）
+\IfFileExists{algorithm2e.sty}{
+  \RequirePackage[ruled,linesnumbered]{algorithm2e}
+  \SetAlgorithmName{Algorithm}{Algorithm}{List of Algorithms}
+}{}
+
+% 代码高亮（可选）
+\IfFileExists{minted.sty}{
+  \RequirePackage{minted}
+  \setminted{
+    fontsize=\small,
+    breaklines=true,
+    frame=single
+  }
+}{}
+
+% 颜色支持
+\RequirePackage{xcolor}
+\definecolor{linkblue}{RGB}{0,0,139}
+\definecolor{citegreen}{RGB}{0,100,0}
+\definecolor{urlred}{RGB}{139,0,0}

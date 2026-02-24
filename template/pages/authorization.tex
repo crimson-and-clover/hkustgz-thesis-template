@@ -1,0 +1,36 @@
+% ============================================================
+% HKUST(GZ) Thesis - Authorization Page
+% 授权页定义
+% ============================================================
+
+% 生成授权页
+\newcommand{\makeauthorization}{%
+  \clearpage
+  \pagestyle{plain}
+  \addcontentsline{toc}{chapter}{Authorization}
+  \vspace*{1cm}
+  \begin{center}
+  {\Large\bfseries \uline{Authorization}\par}
+  \end{center}
+  \vspace{1cm}
+  
+  I hereby declare that I am the sole author of the thesis.
+  
+  \vspace{1cm}
+  
+  I authorize the Hong Kong University of Science and Technology (Guangzhou) to lend this thesis to other institutions or individuals for the purpose of scholarly research.
+  
+  \vspace{1cm}
+  
+  I further authorize the Hong Kong University of Science and Technology (Guangzhou) to reproduce the thesis by photocopying or by other means, in total or in part, at the request of other institutions or individuals for the purpose of scholarly research.
+  
+  \vspace{5cm}
+  
+  \begin{center}
+    \rule{8cm}{0.4pt}\\[0.3cm]
+    \@author\\[1cm]
+    \@authdate
+  \end{center}
+  
+  \clearpage
+}

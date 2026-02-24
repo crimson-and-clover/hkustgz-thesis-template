@@ -1,0 +1,91 @@
+% ============================================================
+% HKUST(GZ) Thesis - Bibliography Configuration
+% ============================================================
+
+% 加载 biblatex（深度定制以符合 IEEE 及学校要求）
+\RequirePackage[
+  backend=biber,
+  style=ieee,           % 基础使用 IEEE 样式
+  citestyle=numeric-comp,
+  sorting=none,         % 按引用顺序
+  natbib=true,
+  hyperref=true,
+  url=true,
+  doi=true,
+  eprint=true,
+  isbn=false,
+  giveninits=true,      % 名字缩写 (J. L. Doe)
+  terseinits=false,     % 缩写后保留点 (J. L. 而不是 JL)
+  maxnames=6,           % 超过6人使用 et al.
+  minnames=1,
+  dashed=false,         % 即使同一作者也不使用横线代替名字
+]{biblatex}
+
+% ------------------------------------------------------------
+% 1. 格式修正：确保符合“Initials Lastname”要求
+% ------------------------------------------------------------
+% 强制姓名顺序为：首字母 + 姓 (e.g., J. L. Schonberger)
+\DeclareNameAlias{default}{given-family}
+
+% ------------------------------------------------------------
+% 2. 标题与目录设置
+% ------------------------------------------------------------
+\DefineBibliographyStrings{english}{
+  bibliography = {Bibliography and References},
+  references = {Bibliography and References},
+}
+
+% 定义目录跳转和标题样式
+\defbibheading{bibliography}[Bibliography and References]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+}
+
+% ------------------------------------------------------------
+% 3. 解决溢出（Overfull \hbox）的“终极补丁”
+% ------------------------------------------------------------
+% 允许在 URL 和 DOI 中的任意位置断行
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburlnumpenalty}{9000}
+
+% 针对参考文献列表的特殊排版微调
+\renewcommand*{\bibfont}{\small\raggedright} % 1. 稍微调小字号 2. 强制左对齐避免溢出
+
+% 允许在斜杠 (/) 后断行，专门对付 IEEE/CVF 这种词
+\renewcommand*{\UrlBreaks}{\do\/\do-\do\_}
+
+% ------------------------------------------------------------
+% 4. 打印参考文献命令（集成 sloppy 避坑指南）
+% ------------------------------------------------------------
+\newcommand{\printthebibliography}[1][]{
+  \clearpage
+  \begingroup
+    \sloppy          % 放宽间距限制，允许 LaTeX 更好地断行
+    \printbibliography[heading=bibliography, #1]
+  \endgroup
+}
+
+% ------------------------------------------------------------
+% 5. 兼容性与细节微调
+% ------------------------------------------------------------
+\DeclareRobustCommand{\citep}[2][]{\cite[#1]{#2}}
+\DeclareRobustCommand{\citet}[2][]{\textcite[#1]{#2}}
+
+% 确保方括号内编号正确对齐
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+
+% \AtBeginDocument{
+%   \@ifpackageloaded{hyperref}{
+%     \hypersetup{
+%       hidelinks  % 直接隐藏所有超链接的颜色和方框
+%     }
+%   }{}{}
+% }
+
+% \renewbibmacro*{volume+number}{%
+%   \printfield{volume}%         % 打印卷号
+%   \setunit*{\addcomma\space}%  % 后面加逗号和空格
+%   \printfield{number}%         % 打印期号
+% }

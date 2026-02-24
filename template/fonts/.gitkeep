@@ -1,0 +1,8 @@
+# This directory can contain font files for CI/CD automation.
+#
+# For local compilation, the template automatically uses system fonts.
+# If you need to use local font files (e.g., for GitHub Actions without
+# system fonts installed), copy font files here.
+#
+# Note: Do not commit copyrighted font files to public repositories.
+# Use open-source alternatives like TeX Gyre fonts instead.

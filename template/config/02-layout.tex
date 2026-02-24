@@ -1,0 +1,57 @@
+% ============================================================
+% HKUST(GZ) Thesis - Page Layout Configuration
+% 页面布局配置：使用 geometry 包
+% ============================================================
+
+% 页面尺寸和边距
+\RequirePackage{geometry}
+\geometry{
+  a4paper,           % A4 纸张
+  margin=25mm,       % 四周边距均为 25mm
+  headheight=15pt,   % 页眉高度
+  headsep=20pt,      % 页眉与正文间距
+  footskip=30pt,     % 页脚与正文间距
+  includemp=false,   % 不包含边注区域
+  includehead=false,  % 包含页眉在正文区域内
+  includefoot=false,  % 包含页脚在正文区域内
+}
+
+% 段落设置
+\RequirePackage{indentfirst}  % 章节首段也缩进
+\setlength{\parindent}{2em}   % 段落缩进 2 字符宽度
+\setlength{\parskip}{0pt}     % 段落之间无额外间距
+
+% 自动断行优化（使用 microtype 微排版）
+\RequirePackage{microtype}    % 微排版优化，改善断行和间距
+
+% 允许更宽松的行距调整，减少 Overfull \hbox 警告
+\setlength{\emergencystretch}{3em}
+
+% 行距设置（与 setspace 包配合）
+% 已在 01-fonts.tex 中设置 \onehalfspacing
+
+% 页眉页脚设置
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}  % 清空默认设置
+
+% 页眉：左右都留空（页码在页脚居中）
+\fancyhead[L]{}
+\fancyhead[R]{}
+
+% 页脚：页码居中（符合学校要求）
+\fancyfoot[C]{\small\thepage}
+
+% 章节首页使用 plain 样式（页脚居中页码）
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% 页眉线宽度
+\renewcommand{\headrulewidth}{0.4pt}
+
+% 目录深度设置
+\setcounter{tocdepth}{2}      % 目录显示到 subsection
+\setcounter{secnumdepth}{2}   % 编号到 subsection

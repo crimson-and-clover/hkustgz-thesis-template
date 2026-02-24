@@ -1,0 +1,67 @@
+% ============================================================
+% HKUST(GZ) Thesis - Signature Page
+% 签名页定义
+% ============================================================
+
+% 生成签名行命令
+\newcommand{\@makesignatureline}[2]{%
+  \vspace{0.6cm}
+  \begin{center}
+  \rule{8cm}{0.4pt}\par\vspace{0.3cm}
+  #1\par
+  #2
+  \end{center}
+}
+
+% 生成签名页
+\newcommand{\makesignature}{%
+  \clearpage
+  \pagestyle{plain}
+  \addcontentsline{toc}{chapter}{Signature Page}
+  % \vspace*{1cm}
+  \begin{center}
+    {\Large\bfseries \@title\par}
+    
+    \vspace{3cm}
+    
+    {\large by\par}
+    \vspace{0.3cm}
+    {\large \@author\par}
+  \end{center}
+  
+  \vspace{1cm}
+  
+  \begin{center}
+    \begin{minipage}{0.9\textwidth}
+      \centering
+      This is to certify that I have examined the above \@degreeabbr\ thesis\\
+      and have found that it is complete and satisfactory in all respects,\\
+      and that any and all revisions required by\\
+      the thesis examination committee have been made.
+    \end{minipage}
+  \end{center}
+  
+  \vspace{1cm}
+  
+  % 签名区：自动生成
+  % 1. Advisor（来自 \advisor）
+  \@makesignatureline{\@advisor, Thesis Supervisor}{}
+
+  % 2. Co-supervisor（如果设置了）
+  \ifx\@cosupervisor\@empty
+  \else
+    \@makesignatureline{\@cosupervisor, Co-supervisor}{}
+  \fi
+
+  % 3. Thrust Head（来自 \depthead）
+  \@makesignatureline{\@depthead, Thrust Head}{\@deptheadthrust}
+  
+  \vfill
+  
+  \begin{center}
+    \@department\\[0.3cm]
+    \@authdate
+  \end{center}
+  
+  \clearpage
+}

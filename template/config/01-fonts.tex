@@ -1,0 +1,124 @@
+% ============================================================
+% HKUST(GZ) Thesis - Font Configuration
+% 现代字体配置：使用 fontspec + xeCJK
+% ============================================================
+
+% 检查编译引擎
+\RequirePackage{ifxetex}
+\ifxetex
+  % XeLaTeX 模式下使用 fontspec
+  \RequirePackage{fontspec}
+  
+  % ============================================================
+  % 西文字体设置
+  % 优先级：1) 本地字体文件 2) 系统已安装字体 3) 开源替代字体
+  % ============================================================
+  
+  % 检查本地字体文件是否存在（用于 CI/CD）
+  \IfFileExists{template/fonts/times.ttf}{
+    % 使用本地字体文件（Times New Roman 系列）
+    \setmainfont{times}[
+      Path = template/fonts/,
+      Extension = .ttf,
+      UprightFont = *,
+      BoldFont = *bd,
+      ItalicFont = *i,
+      BoldItalicFont = *bi
+    ]
+    
+    \setsansfont{arial}[
+      Path = template/fonts/,
+      Extension = .ttf,
+      UprightFont = *,
+      BoldFont = *bd,
+      ItalicFont = *i,
+      BoldItalicFont = *bi
+    ]
+    
+    \setmonofont{cour}[
+      Path = template/fonts/,
+      Extension = .ttf,
+      UprightFont = *,
+      BoldFont = *bd,
+      ItalicFont = *i,
+      BoldItalicFont = *bi,
+      Scale = 0.9
+    ]
+  }{
+    % 本地字体不存在，检查系统字体或回退到开源替代
+    \IfFontExistsTF{Times New Roman}{
+      % 系统已安装 Times New Roman（Windows/macOS）
+      \setmainfont{Times New Roman}
+      \setsansfont{Arial}
+      \setmonofont{Courier New}[Scale=0.9]
+    }{
+      \IfFontExistsTF{TeX Gyre Termes}{
+        % TeX Live 自带开源替代（Times 风格）
+        \setmainfont{TeX Gyre Termes}
+        \setsansfont{TeX Gyre Heros}    % Helvetica 风格
+        \setmonofont{TeX Gyre Cursor}[Scale=0.9]  % Courier 风格
+      }{
+        % 最后尝试 Liberation 字体（大多数 Linux 发行版都有）
+        \setmainfont{Liberation Serif}
+        \setsansfont{Liberation Sans}
+        \setmonofont{Liberation Mono}[Scale=0.9]
+      }
+    }
+  }
+  
+  % 中文支持
+  \RequirePackage{xeCJK}
+  
+  % 中文字体设置（使用开源字体，可根据系统调整）
+  % 优先级：Source Han > Noto CJK > SimSun > PingFang > AR PL UMing
+  % 这样确保 CI/CD 环境（Linux）优先使用可用的开源字体
+  
+  \IfFontExistsTF{Source Han Serif SC}{
+    % 优先使用思源宋体（如果已安装）
+    \setCJKmainfont{Source Han Serif SC}
+    \setCJKsansfont{Source Han Sans SC}
+    \setCJKmonofont{Source Han Sans SC}
+  }{
+    \IfFontExistsTF{Noto Serif CJK SC}{
+      % Linux CI 环境：使用 Noto CJK（fonts-noto-cjk 包提供）
+      \setCJKmainfont{Noto Serif CJK SC}
+      \setCJKsansfont{Noto Sans CJK SC}
+      \setCJKmonofont{Noto Sans Mono CJK SC}
+    }{
+      \IfFontExistsTF{SimSun}{
+        % Windows 系统
+        \setCJKmainfont{SimSun}
+        \setCJKsansfont{SimHei}
+        \setCJKmonofont{FangSong}
+      }{
+        \IfFontExistsTF{PingFang SC}{
+          % macOS 系统
+          \setCJKmainfont{PingFang SC}
+          \setCJKsansfont{Heiti TC}
+          \setCJKmonofont{STFangsong}
+        }{
+          % 最后尝试 AR PL UMing（fonts-arphic-uming 包提供）
+          \setCJKmainfont{AR PL UMing CN}
+          \setCJKsansfont{AR PL UMing CN}
+          \setCJKmonofont{AR PL UMing CN}
+        }
+      }
+    }
+  }
+  
+  % 标点符号处理
+  \punctstyle{quanjiao}
+  
+  % 行距设置
+  \RequirePackage{setspace}
+  \RequirePackage{ulem}
+  \onehalfspacing
+  
+\else
+  % 非 XeLaTeX 模式下给出错误
+  \ClassError{hkustgz-thesis}{This class requires XeLaTeX. Please compile with xelatex instead of pdflatex or lualatex.}{}
+\fi
+
+% 数学字体（可选：使用 unicode-math 统一数学字体）
+% \RequirePackage{unicode-math}
+% \setmathfont{Latin Modern Math}
