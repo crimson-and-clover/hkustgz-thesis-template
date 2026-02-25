@@ -50,11 +50,12 @@
   % 2. Co-supervisor（如果设置了）
   \ifx\@cosupervisor\@empty
   \else
-    \@makesignatureline{\@cosupervisor, Co-supervisor}{}
+    \@makesignatureline{\@cosupervisor, Thesis Co-supervisor}{}
   \fi
 
   % 3. Thrust Head（来自 \depthead）
-  \@makesignatureline{\@depthead, Thrust Head}{\@deptheadthrust}
+  \@makesignatureline{\@depthead, Thrust Head}{}
+  % \@makesignatureline{\@depthead, Thrust Head}{\@deptheadthrust}
   
   \vfill
   
